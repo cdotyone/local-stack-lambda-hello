@@ -24,5 +24,5 @@ terraform apply
 To see the lambda run run 
 
 ```
-aws --endpoint-url=http://localhost:4566 lambda invoke --function my_function --payload '{}' lambda.out
+aws --endpoint-url=http://localhost:4566 lambda invoke --function hello --payload '{}' lambda.out
 ```

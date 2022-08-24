@@ -6,7 +6,7 @@ data "archive_file" "lambda_source" {
 }
 
 resource "aws_lambda_function" "lambda" {
-  function_name    = "my_function"
+  function_name    = "hello"
   role             = aws_iam_role.lambda_role.arn
   filename         = data.archive_file.lambda_source.output_path
   source_code_hash = data.archive_file.lambda_source.output_base64sha256
