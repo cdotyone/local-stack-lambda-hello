@@ -2,3 +2,4 @@
 *.zip
 lambda.out
 terraform.tfstate*
+.localstack
