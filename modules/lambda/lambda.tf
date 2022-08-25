@@ -33,7 +33,7 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name = "lambda_role"
+  name = "${local.name}-lambda-role"
 
   assume_role_policy = <<EOF
 {
