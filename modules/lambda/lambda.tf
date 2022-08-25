@@ -34,7 +34,7 @@ resource "aws_lambda_function" "lambda" {
 
 resource "aws_iam_role" "lambda_role" {
   name = "${local.name}-lambda-role"
-
+  tags = local.tags
   assume_role_policy = <<EOF
 {
   "Version": "2012–10–17",

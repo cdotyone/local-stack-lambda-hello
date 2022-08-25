@@ -1,6 +1,6 @@
 locals {
-  tags = {
-    version = "1.0"
-  }
+  tags = merge({
+    terraform = true
+  },var.tags)
   name = var.name
 }
