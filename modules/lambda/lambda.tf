@@ -1,5 +1,5 @@
 data "archive_file" "lambda_source" {
-  source_file      = "${path.module}/data/${local.name}.py"
+  source_file      = "${path.module}/data/function.py"
   output_file_mode = "0666"
   output_path      = "${local.name}.zip"
   type             = "zip"
@@ -11,7 +11,7 @@ resource "aws_lambda_function" "lambda" {
   filename         = data.archive_file.lambda_source.output_path
   source_code_hash = data.archive_file.lambda_source.output_base64sha256
 
-  handler = "${local.name}.lambda_handler"
+  handler = "function.lambda_handler"
   runtime = "python3.9"
 
   environment {
