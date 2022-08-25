@@ -1,13 +1,13 @@
 ﻿# local-stack-lambda-hello
 
 ## Credentials
-need to add contents of "credentials" file to your .aws/credentials file.  In yourt profile folder.  So for windows c:\user\<your login>/.aws/credentials
+Need to add contents of "credentials" file to your .aws/credentials file.  In your profile folder.  So for windows /users/<your login>/.aws/credentials
 
 ## Dependencies
-need to have docker, python and terraform installed
+Need to have docker, python and terraform installed
 
 ## Initialization
-in a terminal or powershell from this project folder run:
+In a terminal or powershell from this project folder run:
 
 ```
 docker-compose up
