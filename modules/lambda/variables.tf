@@ -8,3 +8,9 @@ variable "tags" {
   description = "base set of tags to add to resources"
   default     = {}
 }
+
+variable "environment" {
+  type        = map(string)
+  description = "map containing environment variables to add to lambda"
+  default     = {}
+}

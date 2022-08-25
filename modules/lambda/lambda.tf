@@ -15,9 +15,10 @@ resource "aws_lambda_function" "lambda" {
   runtime = "python3.9"
 
   environment {
-    variables = {
-      LOG_LEVEL = "debug"
-    }
+    variables = merge(
+      {
+        LOG_LEVEL = "debug"
+    }, var.environment)
   }
 
   depends_on = [
@@ -33,23 +34,21 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name               = "${local.name}-lambda-role"
-  tags               = local.tags
-  assume_role_policy = <<EOF
-{
-  "Version": "2012–10–17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-      "Service": "lambda.amazonaws.com"
-    },
-    "Effect": "Allow",
-    "Sid": ""
-    }
-  ]
-}
-EOF
+  name = "${local.name}-lambda-role"
+  tags = local.tags
+  assume_role_policy = jsonencode({
+    Version : "2012–10–17",
+    Statement : [
+      {
+        Action : "sts:AssumeRole",
+        Principal : {
+          Service : "lambda.amazonaws.com"
+        },
+        Effect : "Allow",
+        Sid : ""
+      }
+    ]
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_basic_execution_policy_attachement" {
