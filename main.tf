@@ -23,5 +23,5 @@ provider "aws" {
 module "lambda" {
   source = "./modules/lambda"
   name   = "hello"
-  tags = var.tags
+  tags   = var.tags
 }

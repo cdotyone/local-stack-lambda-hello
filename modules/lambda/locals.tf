@@ -1,6 +1,6 @@
 locals {
   tags = merge({
     terraform = true
-  },var.tags)
+  }, var.tags)
   name = var.name
 }
