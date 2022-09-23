@@ -1,4 +1,4 @@
-﻿# local-stack-lambda-hello
+﻿# local-stack-lambda-s3
 
 ## Credentials
 Need to add contents of "credentials" file to your .aws/credentials file.  In your profile folder.  So for windows /users/&lt;your login&gt;/.aws/credentials
@@ -13,7 +13,7 @@ In a terminal or powershell from this project folder run:
 docker-compose up
 ```
 
-in another terminal or powershell run:
+In another terminal or powershell run:
 
 ```
 terraform init
@@ -24,5 +24,5 @@ terraform apply
 To see the lambda run run 
 
 ```
-aws --endpoint-url=http://localhost:4566 lambda invoke --function hello --payload '{}' lambda.out
+aws --endpoint-url=http://localhost:4566 lambda invoke --function s3lambda --payload '{}' lambda.out
 ```
