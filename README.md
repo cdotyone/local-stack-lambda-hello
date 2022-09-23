@@ -1,4 +1,4 @@
-﻿# local-stack-http-gateway
+﻿# local-stack-api-dynamo-crud
 
 ## Credentials
 Need to add contents of "credentials" file to your .aws/credentials file.  In your profile folder.  So for windows /users/&lt;your login&gt;/.aws/credentials
