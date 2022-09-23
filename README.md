@@ -1,4 +1,4 @@
-﻿# local-stack-lambda-s3
+﻿# local-stack-lambda-dynamo
 
 ## Credentials
 Need to add contents of "credentials" file to your .aws/credentials file.  In your profile folder.  So for windows /users/&lt;your login&gt;/.aws/credentials
@@ -13,7 +13,7 @@ In a terminal or powershell from this project folder run:
 docker-compose up
 ```
 
-In another terminal or powershell run:
+in another terminal or powershell run:
 
 ```
 terraform init
@@ -21,8 +21,19 @@ terraform apply
 ```
 
 ## Test
-To see the lambda run run 
+To see if we have data after terraform created dynamodb table and then loaded it with data using python
+```
+python ./query.py
+```
+
+Test simple get of US country
 
 ```
-aws --endpoint-url=http://localhost:4566 lambda invoke --function s3lambda --payload '{}' lambda.out
+aws --endpoint-url=http://localhost:4566 lambda invoke --function dyna-get --payload '{}' lambda.out
+```
+
+Test simple list countries
+
+```
+aws --endpoint-url=http://localhost:4566 lambda invoke --function dyna-list --payload '{}' lambda.out
 ```

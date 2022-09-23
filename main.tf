@@ -14,40 +14,60 @@ provider "aws" {
   s3_use_path_style           = true
 
   endpoints {
-    s3     = "http://localhost:4566"
-    lambda = "http://localhost:4566"
-    iam    = "http://localhost:4566"
+    s3       = "http://localhost:4566"
+    lambda   = "http://localhost:4566"
+    iam      = "http://localhost:4566"
+    dynamodb = "http://localhost:4566"
   }
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "localstack-s3-lambda"
+  bucket = "localstack-s3-dynamo"
   tags   = var.tags
 }
 
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.b.id
-  acl    = "public-read"
+resource "aws_dynamodb_table" "countries_table" {
+  name           = "countries"
+  billing_mode   = "PROVISIONED"
+  read_capacity  = "30"
+  write_capacity = "30"
+  attribute {
+    name = "countryCode"
+    type = "S"
+  }
+  attribute {
+    name = "name"
+    type = "S"
+  }
+
+  hash_key  = "countryCode"
+  range_key = "name"
+
+  provisioner "local-exec" {
+    command = "python load.py"
+  }
 }
 
-resource "aws_s3_object" "object" {
-  bucket = aws_s3_bucket.b.id
-  key    = "countries.json"
-  source = "${path.module}/countries.json"
-
-  etag = filemd5("${path.module}/countries.json")
-}
-
-module "lambda" {
-  source = "./modules/lambda"
-  name   = "s3lambda"
+module "lambda_get" {
+  source = "./modules/lambda_get"
+  name   = "dyna-get"
   environment = {
-    bucket = aws_s3_bucket.b.id
     env    = var.tags.env
   }
   tags = var.tags
 }
 
+module "lambda_list" {
+  source = "./modules/lambda_list"
+  name   = "dyna-list"
+  environment = {
+    env    = var.tags.env
+  }
+  tags = var.tags
+}
+
+
+/*
 resource "aws_iam_role_policy" "test_policy" {
   name = "access_s3"
   role = module.lambda.role_name
@@ -80,3 +100,4 @@ resource "aws_iam_role_policy" "test_policy" {
 }
 EOF
 }
+*/
