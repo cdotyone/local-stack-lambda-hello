@@ -1,4 +1,4 @@
-﻿# local-stack-lambda-dynamo
+﻿# local-stack-http-gateway
 
 ## Credentials
 Need to add contents of "credentials" file to your .aws/credentials file.  In your profile folder.  So for windows /users/&lt;your login&gt;/.aws/credentials
@@ -26,14 +26,8 @@ To see if we have data after terraform created dynamodb table and then loaded it
 python ./query.py
 ```
 
-Test simple get of US country
-
-```
-aws --endpoint-url=http://localhost:4566 lambda invoke --function dyna-get --payload '{}' lambda.out
-```
-
 Test simple list countries
 
 ```
-aws --endpoint-url=http://localhost:4566 lambda invoke --function dyna-list --payload '{}' lambda.out
+aws --endpoint-url=http://localhost:4566 lambda invoke --function dyna-country --payload '{}' lambda.out
 ```
