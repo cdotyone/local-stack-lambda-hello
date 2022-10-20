@@ -19,7 +19,7 @@ services:
       - AWS_SECRET_ACCESS_KEY=secret-access-key
       - LAMBDA_DOCKER_NETWORK=host
       - LAMBDA_EXECUTOR=docker
-      - LOCALSTACK_API_KEY=2nIkUXjo0U  # replace with yours, this is trial key
+      - LOCALSTACK_API_KEY=3YwfsbBkJL  # replace with yours, this is trial key
     volumes:
       - "./.localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
