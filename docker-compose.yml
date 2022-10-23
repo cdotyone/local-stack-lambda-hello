@@ -9,7 +9,12 @@ services:
       - "4510-4559:4510-4559"
       - "4566:4566"
       - "8080:8080" # Web UI 
+      - "8443:443" # cloudfront
+      - "8081:80" # cloudfront
     environment:
+      - DNS_ADDRESS=127.0.0.1
+      - DISABLE_CORS_CHECKS=1
+      - EXTRA_CORS_ALLOWED_ORIGINS=app://.
       - DEFAULT_REGION=us-east-2
       - DATA_DIR=/tmp/localstack/data
       - DEBUG=1
