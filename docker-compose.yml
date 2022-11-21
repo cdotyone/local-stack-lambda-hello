@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
    localstack:
-    image: localstack/localstack:1.0.4
+    image: localstack/localstack:latest
     container_name: localstack_demo
     network_mode: bridge
     ports:
@@ -24,7 +24,7 @@ services:
       - AWS_SECRET_ACCESS_KEY=secret-access-key
       - LAMBDA_DOCKER_NETWORK=host
       - LAMBDA_EXECUTOR=docker
-      - LOCALSTACK_API_KEY=3YwfsbBkJL  # replace with yours, this is trial key
+    env_file: .env
     volumes:
       - "./.localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

@@ -3,3 +3,4 @@
 lambda.out
 terraform.tfstate*
 .localstack
+.env
