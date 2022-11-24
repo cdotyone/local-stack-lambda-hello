@@ -71,7 +71,8 @@ def getCountries(table):
         return {
             "statusCode": 200,
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin" : "*"
             },
             "body": json.dumps(data)
         }
@@ -189,7 +190,8 @@ def lambda_handler(event_data, lambda_config):
         return {
             "statusCode": 200,
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin" : "*"
             },
             "body": json.dumps(country)
         }
